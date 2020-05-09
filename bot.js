@@ -1,5 +1,5 @@
-import config from "./config";
-import twit from "twit";
+const config = require('./config');
+const twit = require('twit');
 
 
 const T = new twit(config);
