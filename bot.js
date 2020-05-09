@@ -18,7 +18,6 @@ app.listen(server_port, server_host, function () {
 });
 
 // start stream and track tweets
-const stream = T.stream('statuses/filter', { track: 'wicca surf' });
 
 // use this to log errors from requests
 function responseCallback(err, data, response) {
@@ -30,6 +29,8 @@ function responseCallback(err, data, response) {
 
 
 app.get("/", function (req, res) {
+    const stream = T.stream('statuses/filter', { track: 'wicca surf' });
+
     stream.on('tweet', tweet => {
         // retweet
         T.post('statuses/retweet/:id', { id: tweet.id_str }, responseCallback);
