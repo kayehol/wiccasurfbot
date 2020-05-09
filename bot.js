@@ -35,5 +35,5 @@ app.listen(server_port, server_host, function () {
 });
 
 app.get("/", function (req, res) {
-  setInterval(retweet,2000);
+    retweet();
 });
