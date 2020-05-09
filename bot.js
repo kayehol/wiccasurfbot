@@ -36,5 +36,9 @@ for(let dat of tweets)
 }
 
 app.listen(server_port, server_host, function(){
-    setInterval(retweet,10000);
+    console.log('App online');
+});
+
+app.get('/', function(req,res){
+    retweet();
 });
