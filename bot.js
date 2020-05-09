@@ -27,3 +27,4 @@ function retweet() {
   });
 }
 
+setInterval(retweet,2000);
