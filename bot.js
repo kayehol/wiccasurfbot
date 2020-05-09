@@ -1,6 +1,12 @@
 const config=require('./config')
 const twit=require('twit')
-const T=new twit(config)
+
+const app = require('/.server.js')
+var server_port = process.env.YOUR_PORT || process.env.PORT || 3000;
+var server_host = process.env.YOUR_HOST || '0.0.0.0';
+
+const T = new twit(config)
+
 function retweet()
 {
 let params={
@@ -28,4 +34,7 @@ for(let dat of tweets)
 }
 )
 }
-setInterval(retweet,10000)
+
+app.listen(server_port, server_host, function(){
+    setInterval(retweet,10000);
+});
