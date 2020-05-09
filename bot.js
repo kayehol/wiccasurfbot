@@ -39,8 +39,8 @@ function retweet() {
     
   
     if (!err) {
-      
-        let retweetId = data.id_str;
+      for (let dat of data) {
+        let retweetId = dat.id_str;
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
           if (response) console.log("Retuitado mention " + retweetId);
           if (err)
@@ -48,7 +48,7 @@ function retweet() {
               "RT de mention duplicado"
             );
         });
-      
+      }
     }
   });
 }
