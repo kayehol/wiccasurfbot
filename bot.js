@@ -36,9 +36,11 @@ function retweet() {
     }
   });
   T.get("statuses/mentions_timeline", { count: 10 }, (err, data, response) => {
+    let tweets = data.entities.user_mentions;
   
     if (!err) {
-        let retweetId = data.id_str;
+      for (let dat of tweets) {
+        let retweetId = dat.id_str;
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
           if (response) console.log("Retuitado mention " + retweetId);
           if (err)
@@ -46,6 +48,7 @@ function retweet() {
               "RT de mention duplicado"
             );
         });
+      }
     }
   });
 }
