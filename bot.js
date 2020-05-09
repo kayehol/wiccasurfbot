@@ -1,7 +1,7 @@
 const config=require('./config')
 const twit=require('twit')
 
-const app = require('/.server.js')
+const app = require('./server.js')
 var server_port = process.env.YOUR_PORT || process.env.PORT || 3000;
 var server_host = process.env.YOUR_HOST || '0.0.0.0';
 
