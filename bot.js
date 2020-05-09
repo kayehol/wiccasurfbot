@@ -4,24 +4,16 @@ const twit = require("twit");
 
 const T = new twit(config);
 
-const params = {
-    q: 'wicca surf',
-    count: 10
+// start stream and track tweets
+const stream = T.stream('statuses/filter', { track: 'wicca surf' });
+
+// use this to log errors from requests
+function responseCallback(err, data, response) {
+  console.log(err);
 }
 
-T.get('search/tweets', params,  (err, data, res) => {
-    if(!err){
-        for(let i=0; i < data.statuses.length; i++){
-            let tweetID = {id: data.statuses[i].id_str}
-            T.post('statuses/retweet', tweetID, (err, res) => {
-                if(!err){
-                    console.log(`Retweet successful`)
-                }else{
-                    console.log(err.message)
-                }
-            })
-        }
-    }else{
-        console.log(err)
-    }
-})
+// event handler
+stream.on('tweet', tweet => {
+  // retweet
+  T.post('statuses/retweet/:id', { id: tweet.id_str }, responseCallback);
+});
