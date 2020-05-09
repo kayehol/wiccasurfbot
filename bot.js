@@ -29,7 +29,23 @@ function retweet() {
           if (response) console.log("Retuitado " + retweetId);
           if (err)
             console.log(
-              "Algo errado no RT"
+              "RT duplicado"
+            );
+        });
+      }
+    }
+  });
+  T.get("statuses/mentions_timeline", (err, data, response) => {
+    let tweets = data.statuses;
+  
+    if (!err) {
+      for (let dat of tweets) {
+        let retweetId = dat.id_str;
+        T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
+          if (response) console.log("Retuitado mention " + retweetId);
+          if (err)
+            console.log(
+              "RT de mention duplicado"
             );
         });
       }
