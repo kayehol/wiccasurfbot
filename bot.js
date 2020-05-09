@@ -40,7 +40,7 @@ function retweet() {
   
     if (!err) {
       
-        let retweetId = dat.id_str;
+        let retweetId = data.id_str;
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
           if (response) console.log("Retuitado mention " + retweetId);
           if (err)
