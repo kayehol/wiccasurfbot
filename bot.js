@@ -36,11 +36,11 @@ function retweet() {
     }
   });
   T.get("statuses/mentions_timeline", { count: 10 }, (err, data, response) => {
-    let tweets = data.entities.user_mentions;
+    let tweets = data.entities;
   
     if (!err) {
       for (let dat of tweets) {
-        let retweetId = dat.id_str;
+        let retweetId = dat.user_mentions.id_str;
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
           if (response) console.log("Retuitado mention " + retweetId);
           if (err)
