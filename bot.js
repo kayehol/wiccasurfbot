@@ -4,27 +4,24 @@ const twit = require("twit");
 
 const T = new twit(config);
 
-function retweet() {
-  let params = {
-    q: '"wicca surf"',
-    count: 10,
-  };
-  T.get("search/tweets", params, (err, data, response) => {
-    let tweets = data.statuses;
-
-    if (!err) {
-      for (let dat of tweets) {
-        let retweetId = dat.id_str;
-        T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
-          if (response) console.log("Retweeted!!! " + retweetId);
-          if (err)
-            console.log(
-              "Something went wrong while RETWEETING... Duplication maybe..."
-            );
-        });
-      }
-    }
-  });
+const params = {
+    q: 'wicca surf',
+    count: 10
 }
 
-setInterval(retweet,2000);
+T.get('search/tweets', params,  (err, data, res) => {
+    if(!err){
+        for(let i=0; i < data.statuses.length; i++){
+            let tweetID = {id: data.statuses[i].id_str}
+            T.post('statuses/retweet', tweetID, (err, res) => {
+                if(!err){
+                    console.log(`Retweet successful`)
+                }else{
+                    console.log(err.message)
+                }
+            })
+        }
+    }else{
+        console.log(err)
+    }
+})
