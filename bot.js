@@ -25,11 +25,12 @@ function retweet() {
     if (!err) {
       for (let dat of tweets) {
         let retweetId = dat.id_str;
+        let nome = dat.user.screen_name;
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
-          if (response) console.log("Retuitado " + retweetId);
+          if (response) console.log("Retuitado " + retweetId + nome);
           if (err)
             console.log(
-              "RT duplicado"
+              "RT duplicado de " + nome
             );
         });
       }
