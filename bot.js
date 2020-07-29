@@ -25,7 +25,7 @@ function retweet() {
             console.log("Retuitado " + retweetId + " " + nome);
           if (err)
             console.log(
-              "RT duplicado de " + nome
+              "Erro no RT: " + err
             );
         });
       }
@@ -41,7 +41,7 @@ function retweet() {
           if (response) console.log("Retuitado mention " + retweetId + text);
           if (err)
             console.log(
-              "RT de mention duplicado"
+              'Erro na mention: ' + err
             );
         });
       }
