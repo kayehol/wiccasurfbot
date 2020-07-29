@@ -36,8 +36,9 @@ function retweet() {
     if (!err) {
       for (let dat of data) {
         let retweetId = dat.id_str;
+        let text = dat.text;
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
-          if (response) console.log("Retuitado mention " + retweetId);
+          if (response) console.log("Retuitado mention " + retweetId + text);
           if (err)
             console.log(
               "RT de mention duplicado"
