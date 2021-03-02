@@ -29,6 +29,8 @@ function retweet() {
             );
         });
       }
+    } else {
+      console.log(err)
     }
   });
 
@@ -38,11 +40,11 @@ function retweet() {
         let retweetId = dat.id_str;
         let text = dat.text;
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
-          if (response) console.log("Retuitado mention " + retweetId + text);
-          if (err)
-            console.log(
-              'Erro na mention: ' + err
-            );
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Retuitado mention " + retweetId + text);
+          }
         });
       }
     }
