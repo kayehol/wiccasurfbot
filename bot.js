@@ -21,12 +21,11 @@ function retweet() {
         let nome = dat.user.screen_name;
 
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
-          if (response) 
-            console.log("Retuitado " + retweetId + " " + nome);
-          if (err)
-            console.log(
-              "Erro no RT: " + err
-            );
+          if (err) {
+            console.log(err);
+          } else if (response) {
+            console.log("Retuitado! id:" + retweetId + " nome: " + nome);
+          }
         });
       }
     } else {
@@ -42,7 +41,7 @@ function retweet() {
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
           if (err) {
             console.log(err);
-          } else {
+          } else if (response) {
             console.log("Retuitado mention " + retweetId + text);
           }
         });
