@@ -22,14 +22,14 @@ function retweet() {
 
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
           if (err) {
-            console.log(err);
+            console.log(err.message);
           } else if (response) {
             console.log("Retuitado! id:" + retweetId + " nome: " + nome);
           }
         });
       }
     } else {
-      console.log(err)
+      console.log(err.message)
     }
   });
 
@@ -40,7 +40,7 @@ function retweet() {
         let text = dat.text;
         T.post("statuses/retweet/:id", { id: retweetId }, (err, response) => {
           if (err) {
-            console.log(err);
+            console.log(err.message);
           } else if (response) {
             console.log("Retuitado mention " + retweetId + text);
           }
