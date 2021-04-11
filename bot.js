@@ -24,14 +24,14 @@ function retweet() {
           if (response) 
             console.log("Retuitado " + retweetId + " " + nome);
           if (err)
-            console.log(
-              "Erro no RT: " + err
-            );
+            console.log("Erro no RT: " + err);
         });
       }
     }
   });
+}
 
+function retweetMention() {
   T.get("statuses/mentions_timeline", { count: 10 }, (err, data, response) => {
     if (!err) {
       for (let dat of data) {
@@ -49,4 +49,5 @@ function retweet() {
   });
 }
 
-setInterval(retweet, 300000);
+setInterval(retweet, 1800000);
+setInterval(retweetMention, 1800000);
